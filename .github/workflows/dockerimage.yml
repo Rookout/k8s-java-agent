@@ -1,0 +1,19 @@
+name: Build docker image
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Publish to Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: rookout/k8s-java-agent/init-container
+        username: Rookout
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
