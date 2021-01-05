@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  template:
+    spec:
+      containers:
+        - name: hello-world-pod
+          volumeMounts:
+            - mountPath: /shared/java-agent
+              name: java-agent
+          env:
+            - name: JAVA_OPTIONS
+              value: -javaagent:/shared/java-agent/rook.jar
+            - name: ROOKOUT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: rookout
+                  key: token
+      initContainers:
+        - name: init-agent
+          image: rookout/add-java-agent:latest
+          volumeMounts:
+            - mountPath: /shared/java-agent
+              name: java-agent
+      volumes:
+        - name: java-agent
+          emptyDir: {}
