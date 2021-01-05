@@ -1,3 +1,5 @@
+# This is an updated version of https://github.com/Rookout/k8s-java-agent/blob/main/kustomize/deployment.yaml
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
