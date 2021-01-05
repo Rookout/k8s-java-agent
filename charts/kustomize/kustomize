@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# save incoming YAML to file
+cat <&0 > kustomize/all.yaml
+
+# modify the YAML with kustomize
+kustomize build kustomize && rm kustomize/all.yaml

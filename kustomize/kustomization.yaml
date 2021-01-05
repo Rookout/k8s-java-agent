@@ -4,8 +4,8 @@ kind: Kustomization
 resources:
   - deployment.yaml # This is the original application we are deploying
 patchesStrategicMerge:
-- java-agent.yaml # Here we add the Java agent
+  - java-agent.yaml # Here we add the Java agent
 secretGenerator:
-- name: rookout
-  literals:
-  - token=<ROOKOUT_TOKEN> # Create any secrets the Java agent needs
+  - name: rookout
+    literals:
+    - token=<ROOKOUT_TOKEN> # Create any secrets the Java agent needs
