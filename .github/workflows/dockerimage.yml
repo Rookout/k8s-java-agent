@@ -18,3 +18,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: rookout/add-java-agent
           tag_with_ref: true
+          tags: rookout/add-java-agent:latest
