@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# save incoming YAML to file
-cat <&0 > kustomize/all.yaml
+# save incoming YAML from Helm to file
+cat <&0 > kustomize/deployment.yaml
 
-# modify the YAML with kustomize
-kustomize build kustomize && rm kustomize/all.yaml
+# Copy our original Kustomize config
+cp ../kustomize/kustomization.yaml kustomize/
+cp ../kustomize/java-agent.yaml kustomize/
+
+# modify the YAML with kustomize and print it to the standard output
+kustomize build kustomize
+
+rm kustomize/*.yaml
